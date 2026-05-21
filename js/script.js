@@ -431,7 +431,7 @@ function renderResult() {
     let ctaHtml = '';
     
     if (requiresVisit) {
-        const msg = `Olá, sou ${lead.name}, fiz a triagem no site. ${age === 'over_40' ? 'Tenho mais de 40 anos' : 'Tenho uma condição visual'} e preciso agendar minha medição de pupila presencial na Maison.`;
+        const msg = `Olá, sou ${lead.name}, fiz a triagem no site. ${age === 'over_40' ? 'Tenho mais de 40 anos' : 'Tenho uma condição visual'} e preciso agendar minha medição de pupila presencial na Sanviêh.`;
         const encodedMsg = encodeURIComponent(msg);
         const waLink = `${dbData.site_info.whatsapp_base_url || 'https://wa.me/'}${dbData.site_info.whatsapp_number}?text=${encodedMsg}`;
         
