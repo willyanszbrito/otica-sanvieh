@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanviêh | Página Não Encontrada</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <meta name="theme-color" content="#2c231f">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: '#2c231f',
+                        coffeeDark: '#1a1513',
+                        terracotta: '#c28b7b',
+                        terracottaDark: '#a66b5d',
+                        nude: '#d9c8bd'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-coffee text-nude font-sans min-h-screen flex flex-col selection:bg-terracotta selection:text-white">
+
+    <!-- Header -->
+    <header class="w-full py-6 border-b border-nude/10">
+        <div class="container mx-auto px-6">
+            <a href="index.html" class="font-serif text-2xl tracking-wider text-nude font-semibold hover:text-terracotta transition-colors">
+                Sanviêh
+            </a>
+        </div>
+    </header>
+
+    <!-- 404 Content -->
+    <main class="flex-1 flex items-center justify-center">
+        <div class="text-center px-6">
+            <h1 class="font-serif text-[8rem] md:text-[12rem] font-bold text-terracotta/30 leading-none select-none">404</h1>
+            <p class="font-serif text-2xl md:text-3xl text-nude font-semibold mt-4 mb-3">Página Não Encontrada</p>
+            <p class="text-nude/60 font-light max-w-md mx-auto mb-10 leading-relaxed">
+                Oops! Parece que você perdeu o foco. A página que você procura não existe ou foi movida.
+            </p>
+            <a href="index.html" class="inline-block px-8 py-4 rounded-xl bg-terracotta hover:bg-terracottaDark text-white font-semibold tracking-wide transition-all duration-300 shadow-[0_4px_20px_rgba(194,139,123,0.3)] hover:shadow-[0_6px_25px_rgba(194,139,123,0.5)] transform hover:-translate-y-1">
+                Voltar à Página Inicial
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-coffeeDark border-t border-nude/10 py-8">
+        <div class="container mx-auto px-6 text-center text-sm text-nude/40">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Ótica Sanviêh. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

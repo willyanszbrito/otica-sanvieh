@@ -1,0 +1,14 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (caso use npm futuramente)
+node_modules/
+package-lock.json

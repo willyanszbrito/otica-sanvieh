@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth scroll-pt-24" style="font-size: 16px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanviêh | A Visão Perfeita</title>
+    
+    <!-- Favicon CORRETO ÚNICO -->
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c231f">
+
+    <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: 'var(--color-coffee)',
+                        coffeeDark: 'var(--color-coffee-dark)',
+                        terracotta: 'var(--color-terracotta)',
+                        terracottaDark: 'var(--color-terracotta-dark)',
+                        nude: 'var(--color-nude)',
+                        heroText: 'var(--color-hero-text)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Tema Variáveis (Apenas Dark Premium) & CSS Customizado -->
+    <style>
+        :root {
+            /* DARK MODE PREMIUM FIXO */
+            --color-coffee: #2c231f;
+            --color-coffee-dark: #1a1513;
+            --color-terracotta: #c28b7b;
+            --color-terracotta-dark: #a66b5d;
+            --color-nude: #d9c8bd;
+            --color-hero-text: #ffffff;
+        }
+
+        .map-dark-filter {
+            filter: grayscale(100%) invert(90%) contrast(80%) sepia(20%) hue-rotate(330deg);
+        }
+
+        /* Previne flicker antes do GSAP */
+        .gsap-reveal { visibility: hidden; }
+    </style>
+</head>
+<body class="bg-coffee text-nude font-sans min-h-screen flex flex-col overflow-x-hidden selection:bg-terracotta selection:text-white">
+    
+    <!-- Elegant Header com Acessibilidade -->
+    <header class="absolute top-0 w-full z-50 py-6 border-b border-nude/10 gsap-header">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="font-serif text-2xl tracking-wider text-nude font-semibold">
+                Sanviêh
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-nude/70 items-center">
+                <a href="#servicos" class="hover:text-terracotta transition-colors">Serviços</a>
+                <a href="#maison" class="hover:text-terracotta transition-colors">Nossa Maison</a>
+                
+                <!-- Separador -->
+                <div class="h-4 w-px bg-nude/20"></div>
+
+                <!-- Acessibilidade A+/A- -->
+                <div class="flex items-center gap-2">
+                    <button id="btn-decrease-font" aria-label="Diminuir fonte" class="w-8 h-8 rounded-full border border-nude/30 flex items-center justify-center hover:bg-nude/10 hover:text-terracotta transition-colors">A-</button>
+                    <button id="btn-increase-font" aria-label="Aumentar fonte" class="w-8 h-8 rounded-full border border-nude/30 flex items-center justify-center hover:bg-nude/10 hover:text-terracotta transition-colors">A+</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero & Triage Section -->
+    <main class="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
+        
+        <!-- Parallax Background (GSAP) -->
+        <div id="hero-bg" class="absolute inset-0 w-full h-[130%] -top-[15%] bg-[url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat z-0"></div>
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-coffeeDark/80 backdrop-blur-[2px] z-0"></div>
+
+        <div class="relative z-10 container mx-auto px-6 py-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            
+            <!-- Hero Typography -->
+            <div class="flex-1 text-center lg:text-left gsap-hero-text">
+                <h1 id="hero-title" class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-heroText leading-tight mb-6 drop-shadow-xl">
+                    <!-- Title injected by JS -->
+                </h1>
+                <p id="hero-subtitle" class="text-lg md:text-xl text-nude/90 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    <!-- Subtitle injected by JS -->
+                </p>
+            </div>
+
+            <!-- Glassmorphism Funnel Card -->
+            <div class="w-full max-w-md gsap-hero-card">
+                <!-- Adicionado overflow-hidden temporário apenas na animação via JS, removido limite de altura para não vazar -->
+                <div id="triage-card" class="bg-terracotta/10 backdrop-blur-xl border border-terracotta/20 rounded-3xl p-8 md:p-10 shadow-2xl relative min-h-[350px] flex flex-col justify-center transition-none overflow-hidden">
+                    <div id="triage-card-content" class="w-full">
+                        <div class="animate-pulse flex flex-col gap-4">
+                            <div class="h-8 bg-nude/20 rounded w-3/4 mb-4"></div>
+                            <div class="h-14 bg-nude/10 rounded-xl border border-nude/20"></div>
+                            <div class="h-14 bg-nude/10 rounded-xl border border-nude/20"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-32 bg-coffee relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 gsap-section-title">
+                <h2 class="font-serif text-4xl md:text-5xl text-nude font-semibold mb-6">Exclusividade e Cuidado</h2>
+                <div class="w-16 h-1 bg-terracotta mx-auto"></div>
+            </div>
+            
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Maison & Maps -->
+    <section id="maison" class="py-32 bg-coffeeDark relative z-10 border-t border-nude/5">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row gap-16 items-center">
+            
+            <!-- Info Text -->
+            <div class="flex-1 text-center lg:text-left gsap-maison-text">
+                <h2 class="font-serif text-4xl md:text-5xl text-nude font-semibold mb-8">Nossa Maison</h2>
+                <p class="text-nude/80 font-light mb-10 max-w-md mx-auto lg:mx-0 text-lg">
+                    Venha vivenciar o luxo e a precisão ótica em um ambiente projetado para o seu conforto absoluto.
+                </p>
+                
+                <div class="space-y-6 text-left inline-block lg:block">
+                    <div class="flex items-center gap-5 text-nude">
+                        <div class="w-12 h-12 rounded-full bg-terracotta/10 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <span class="text-lg">Rua Samambaia, 1E - Redenção</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-5 text-nude">
+                        <div class="w-12 h-12 rounded-full bg-terracotta/10 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div class="text-base">
+                            <p>Seg a Sex: 09:00 - 17:30</p>
+                            <p>Sáb: 09:00 - 15:00</p>
+                            <p class="text-terracotta font-medium mt-1">Dom: Fechada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Maps Iframe -->
+            <div class="flex-1 w-full h-[450px] rounded-3xl overflow-hidden border border-nude/10 shadow-2xl gsap-maison-map relative">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.0837568559!2d-60.0381!3d-3.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMDMnMDAuMCJTIDYwwrAwMicyMy4yIlc!5e0!3m2!1spt-BR!2sbr!4v1716300000000!5m2!1spt-BR!2sbr" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="map-dark-filter absolute inset-0">
+                </iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-coffee border-t border-nude/10 py-12 relative z-10">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-nude/60">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <span class="font-serif text-2xl text-terracotta mb-2 font-bold tracking-wide">Sanviêh</span>
+                <p>&copy; <span id="current-year"></span> Ótica Sanviêh. Todos os direitos reservados.</p>
+            </div>
+            
+            <div class="flex items-center space-x-6 mt-6 md:mt-0">
+                <a href="https://www.instagram.com/oticasanvieh/" target="_blank" class="hover:text-terracotta transition-colors" aria-label="Instagram">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="politica-privacidade.html" class="hover:text-terracotta transition-colors">Política de Privacidade</a>
+                <a href="termos-uso.html" class="hover:text-terracotta transition-colors">Termos de Uso</a>
+            </div>
+            
+            <p class="mt-8 md:mt-0 text-xs text-neutral-500 hover:text-terracotta transition-colors duration-300">Desenvolvido por Willyan Souza Brito</p>
+        </div>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+        document.getElementById('current-year').innerText = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "site_info": {
+    "name": "Ótica Sanviêh",
+    "whatsapp_number": "5592999987960",
+    "whatsapp_base_url": "https://wa.me/"
+  },
+  "hero": {
+    "title": "A Visão Perfeita <br/> <span class='italic font-light text-terracotta'>para uma Vida Extraordinária</span>",
+    "subtitle": "Tecnologia de ponta e curadoria de armações exclusivas. Descubra o luxo do conforto visual sob medida.",
+    "cta_text": "Descubra a Lente Ideal"
+  },
+  "services": [
+    { "title": "Óculos de Grau", "description": "Lentes de alta precisão e tecnologia para o seu dia a dia.", "icon": "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" },
+    { "title": "Óculos de Sol", "description": "Proteção UV aliada ao design das marcas mais desejadas.", "icon": "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" },
+    { "title": "Armações Premium", "description": "Modelos exclusivos que expressam sua personalidade.", "icon": "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
+    { "title": "Exames e Tratamentos", "description": "Acompanhamento visual completo em nossa Maison.", "icon": "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" }
+  ],
+  "triage": {
+    "step1": {
+      "question": "Qual é a sua faixa etária?",
+      "options": [
+        { "id": "age_under_40", "label": "Menos de 40 anos", "value": "under_40" },
+        { "id": "age_over_40", "label": "40 anos ou mais", "value": "over_40" }
+      ]
+    },
+    "step2": {
+      "question": "Você possui alguma condição específica na visão (ex: estrabismo, dificuldade extrema para perto)?",
+      "options": [
+        { "id": "cond_yes", "label": "Sim, possuo", "value": "yes" },
+        { "id": "cond_no", "label": "Não", "value": "no" }
+      ]
+    },
+    "step3": {
+      "title": "Quase lá!",
+      "subtitle": "Preencha seus dados para descobrir sua lente ideal."
+    },
+    "results": {
+      "store_visit": {
+        "message": "Para garantir a máxima precisão das suas lentes, seu caso exige uma medição de pupila presencial na nossa Maison.",
+        "cta_text": "Agendar na Loja Física"
+      },
+      "online_catalog": {
+        "message": "Ótimo! Você está apto para nossa jornada digital e catálogo exclusivo.",
+        "cta_text": "Acessar Catálogo Online",
+        "link": "#catalogo-online"
+      }
+    }
+  }
+}

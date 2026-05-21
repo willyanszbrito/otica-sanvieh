@@ -1,0 +1,427 @@
+/* ==========================================================================
+   Variáveis e Temas
+   ========================================================================== */
+:root {
+    /* Cores Light Mode */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f4f6f9;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a4a5e;
+    --primary-color: #0d3b66;
+    --primary-hover: #092c4d;
+    --accent-color: #f4d35e;
+    --accent-hover: #e0be49;
+    --border-color: #e1e4e8;
+    --card-bg: #ffffff;
+    
+    /* Acessibilidade - Alto Contraste */
+    --focus-ring: #0d3b66;
+    
+    /* Tipografia base */
+    --font-base: 16px;
+    --font-family: 'Inter', sans-serif;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1);
+    
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0f1115;
+    --bg-secondary: #1a1d24;
+    --text-primary: #f0f0f5;
+    --text-secondary: #a0a4b8;
+    --primary-color: #4da8da;
+    --primary-hover: #388fbe;
+    --accent-color: #f4d35e;
+    --accent-hover: #e0be49;
+    --border-color: #2a2e39;
+    --card-bg: #1e222a;
+    --focus-ring: #4da8da;
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.5);
+}
+
+/* ==========================================================================
+   Reset e Configurações Globais
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-base);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Foco para acessibilidade */
+button:focus-visible, a:focus-visible, input:focus-visible {
+    outline: 2px dashed var(--focus-ring);
+    outline-offset: 4px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   Componentes (Botões, Cards, Forms)
+   ========================================================================== */
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(13, 59, 102, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-option {
+    width: 100%;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.btn-option:hover {
+    border-color: var(--primary-color);
+    background-color: var(--bg-primary);
+    transform: translateX(4px);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    transition: border-color var(--transition-fast);
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.form-group.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.form-group.checkbox-group input {
+    margin-top: 5px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+}
+
+.form-group.checkbox-group label {
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.error-text {
+    color: #d9534f;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+/* ==========================================================================
+   Skeleton Loading
+   ========================================================================== */
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.skeleton {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(to right, var(--bg-secondary) 4%, var(--border-color) 25%, var(--bg-secondary) 36%);
+    background-size: 1000px 100%;
+    border-radius: 4px;
+}
+
+.skeleton-title { height: 40px; margin-bottom: 20px; width: 80%; }
+.skeleton-text { height: 20px; margin-bottom: 10px; width: 100%; }
+.skeleton-button { height: 50px; width: 200px; border-radius: 8px; }
+
+/* ==========================================================================
+   Estrutura: Header
+   ========================================================================== */
+.header {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-smooth);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--primary-color);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.a11y-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.a11y-controls button {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background var(--transition-fast);
+}
+
+.a11y-controls button:hover {
+    background: var(--border-color);
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color var(--transition-fast);
+}
+
+#theme-toggle:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* ==========================================================================
+   Estrutura: Hero
+   ========================================================================== */
+.hero {
+    padding: 100px 0 60px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+/* ==========================================================================
+   Estrutura: Triagem
+   ========================================================================== */
+.triage-section {
+    padding: 60px 0 100px;
+    background-color: var(--bg-primary);
+}
+
+.card-triagem {
+    background-color: var(--card-bg);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.triage-step {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.triage-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Estrutura: Footer & Cookies
+   ========================================================================== */
+.footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 40px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.footer-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.footer-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-copy {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--card-bg);
+    padding: 20px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 0 40px;
+    }
+    
+    .card-triagem {
+        padding: 30px 20px;
+    }
+    
+    .cookie-banner {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
