@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sanvieh-cache-v4';
+const CACHE_NAME = 'sanvieh-cache-v5';
 const urlsToCache = [
     './',
     './index.html',
@@ -8,27 +8,21 @@ const urlsToCache = [
 ];
 
 self.addEventListener('install', event => {
-    // Skip waiting so the new SW takes over immediately
     self.skipWaiting();
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => {
-                return cache.addAll(urlsToCache);
-            })
+        caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
     );
 });
 
 self.addEventListener('activate', event => {
-    // Claim clients so the new SW applies immediately
     event.waitUntil(clients.claim());
     
-    // Delete old caches
-    const cacheWhitelist = [CACHE_NAME];
+    // Limpa caches antigos
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                    if (cacheName !== CACHE_NAME) {
                         return caches.delete(cacheName);
                     }
                 })
@@ -37,33 +31,48 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Network First strategy
 self.addEventListener('fetch', event => {
-    // We only apply Network First for GET requests
+    // Ignorar non-GET e non-HTTP
     if (event.request.method !== 'GET') return;
+    if (!event.request.url.startsWith('http')) return;
 
+    const url = new URL(event.request.url);
+
+    // Bypass total para Maps, APIs e extensões
+    if (url.hostname.includes('google.com') || url.hostname.includes('adminic.com.br')) {
+        return; 
+    }
+
+    // Estratégia 1: HTML, JS e JSON locais -> Network First (Para ter sempre as atualizações imediatas)
+    if (event.request.mode === 'navigate' || url.pathname.endsWith('.js') || url.pathname.endsWith('.html') || url.pathname.endsWith('.json')) {
+        event.respondWith(
+            fetch(event.request)
+                .then(response => {
+                    if (response && response.status === 200) {
+                        const resClone = response.clone();
+                        caches.open(CACHE_NAME).then(cache => cache.put(event.request, resClone));
+                    }
+                    return response;
+                })
+                .catch(() => {
+                    return caches.match(event.request).then(cached => cached || caches.match('./404.html'));
+                })
+        );
+        return;
+    }
+
+    // Estratégia 2: CDNs (Tailwind, GSAP, Fontes) e Imagens -> Stale-While-Revalidate (Super rápido)
     event.respondWith(
-        fetch(event.request)
-            .then(response => {
-                // Se a rede respondeu, clonamos e guardamos no cache, depois retornamos
-                const resClone = response.clone();
-                caches.open(CACHE_NAME).then(cache => {
-                    cache.put(event.request, resClone);
-                });
+        caches.match(event.request).then(cachedResponse => {
+            const fetchPromise = fetch(event.request).then(response => {
+                if (response && response.status === 200) {
+                    const resClone = response.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, resClone));
+                }
                 return response;
-            })
-            .catch(() => {
-                // Se a rede falhar, tentamos o cache
-                return caches.match(event.request)
-                    .then(cachedResponse => {
-                        if (cachedResponse) {
-                            return cachedResponse;
-                        }
-                        // Se falhou rede e cache, e for HTML, retorna 404
-                        if (event.request.mode === 'navigate') {
-                            return caches.match('./404.html');
-                        }
-                    });
-            })
+            }).catch(() => {});
+
+            return cachedResponse || fetchPromise;
+        })
     );
 });
