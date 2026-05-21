@@ -19,6 +19,15 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    },
                     colors: {
                         coffee: 'rgb(var(--color-coffee) / <alpha-value>)',
                         coffeeDark: 'rgb(var(--color-coffee-dark) / <alpha-value>)',
@@ -88,10 +97,10 @@
     <!-- Header -->
     <header class="absolute top-0 w-full z-50 py-6 border-b border-nude/10 gsap-header">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="font-serif text-2xl tracking-wider text-nude font-semibold flex items-center gap-3">
+            <a href="/" class="font-serif text-2xl tracking-wider text-nude font-semibold flex items-center gap-3 hover:opacity-80 transition-opacity">
                 <img src="./favicon.ico" alt="Logo Sanviêh" class="w-8 h-8 rounded-md" />
                 Sanviêh
-            </div>
+            </a>
             
             <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-8 text-sm font-medium text-nude/70 items-center absolute md:relative top-full left-0 w-full md:w-auto bg-coffeeDark md:bg-transparent p-6 md:p-0 border-b border-nude/10 md:border-none shadow-lg md:shadow-none transition-all duration-300">
                 <a href="#servicos" class="hover:text-terracotta transition-colors">Serviços</a>
@@ -136,7 +145,7 @@
             </div>
 
             <div class="w-full max-w-md gsap-hero-card">
-                <div id="triage-card" class="bg-terracotta/10 backdrop-blur-xl border border-terracotta/20 rounded-3xl p-8 md:p-10 shadow-2xl relative min-h-[350px] flex flex-col justify-center transition-none overflow-hidden">
+                <div id="triage-card" class="bg-terracotta/10 backdrop-blur-xl border border-terracotta/20 rounded-3xl p-8 md:p-10 shadow-2xl relative min-h-[350px] flex flex-col justify-center transition-all duration-500 overflow-hidden animate-float hover:shadow-[0_20px_50px_rgba(194,139,123,0.3)]">
                     <div id="triage-card-content" class="w-full">
                         <div class="animate-pulse flex flex-col gap-4">
                             <div class="h-8 bg-nude/20 rounded w-3/4 mb-4"></div>
@@ -188,7 +197,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex-1 w-full h-[450px] rounded-3xl overflow-hidden border border-nude/10 shadow-2xl gsap-maison-map relative">
+            <div class="flex-1 w-full min-h-[350px] md:min-h-[450px] rounded-3xl overflow-hidden border border-nude/10 shadow-2xl gsap-maison-map relative group hover:shadow-[0_20px_50px_rgba(194,139,123,0.2)] transition-all duration-500">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.0837568559!2d-60.0381!3d-3.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMDMnMDAuMCJTIDYwwrAwMicyMy4yIlc!5e0!3m2!1spt-BR!2sbr!4v1716300000000!5m2!1spt-BR!2sbr" 
                     width="100%" 
@@ -202,6 +211,12 @@
             </div>
         </div>
     </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" aria-label="Fale conosco no WhatsApp" class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#1ebe57] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(37,211,102,0.5)] transition-all duration-300 flex items-center justify-center animate-float group">
+        <span class="absolute right-full mr-4 bg-coffee text-nude px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-md border border-nude/10">Fale Conosco</span>
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.418-.099.824z"/></svg>
+    </a>
 
     <!-- Footer -->
     <footer class="bg-coffee border-t border-nude/10 py-12 relative z-10 transition-colors duration-500">
