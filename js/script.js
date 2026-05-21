@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
     setDynamicTitle('A Visão Perfeita'); // SEO inicial
+    initTheme();
+    initMobileMenu();
     initA11y();
     loadDatabase();
 });
@@ -66,7 +68,77 @@ function initA11y() {
             }
         });
     }
+    }
 }
+
+// ==========================================
+// Theme (Light/Dark)
+// ==========================================
+function initTheme() {
+    const themeBtn = document.getElementById('theme-toggle');
+    const iconSun = document.getElementById('theme-icon-sun');
+    const iconMoon = document.getElementById('theme-icon-moon');
+    const root = document.documentElement;
+    
+    if(!themeBtn) return;
+
+    function updateIcons() {
+        if (root.getAttribute('data-theme') === 'dark') {
+            iconMoon.classList.add('hidden');
+            iconSun.classList.remove('hidden');
+        } else {
+            iconSun.classList.add('hidden');
+            iconMoon.classList.remove('hidden');
+        }
+    }
+
+    updateIcons();
+
+    themeBtn.addEventListener('click', () => {
+        if (root.getAttribute('data-theme') === 'dark') {
+            root.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            root.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+        updateIcons();
+    });
+}
+
+// ==========================================
+// Mobile Menu
+// ==========================================
+function initMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('nav-menu');
+    const icon = document.getElementById('hamburger-icon');
+
+    if(!btn || !nav) return;
+
+    btn.addEventListener('click', () => {
+        const isOpen = !nav.classList.contains('hidden');
+        if(isOpen) {
+            nav.classList.add('hidden');
+            nav.classList.remove('flex');
+            icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        } else {
+            nav.classList.remove('hidden');
+            nav.classList.add('flex');
+            icon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // X icon
+        }
+    });
+
+    // Close on link click
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.add('hidden');
+            nav.classList.remove('flex');
+            icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        });
+    });
+}
+
 
 // ==========================================
 // Fetch JSON (Mocking a DB call)
@@ -144,18 +216,24 @@ function initAnimations() {
         ease: "power3.out"
     });
 
-    // 2. Services Grid Stagger Reveal
-    gsap.from(".gsap-service-item", {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#servicos",
-            start: "top 80%", 
+    // 2. Services Grid Stagger Reveal (Fixed to fromTo to guarantee end state)
+    gsap.fromTo(".gsap-service-item", 
+        {
+            y: 60,
+            opacity: 0
+        },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: "#servicos",
+                start: "top 80%"
+            }
         }
-    });
+    );
 
     // Section Title
     gsap.from(".gsap-section-title", {
