@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth scroll-pt-24 overflow-x-hidden" style="font-size: 16px;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanviêh | A Visão Perfeita</title>
-    
+
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="apple-touch-icon" href="./favicon.ico">
     <link rel="manifest" href="manifest.json">
@@ -12,11 +13,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Sanviêh">
-    <meta name="description" content="Ótica Sanviêh - A visão perfeita começa aqui. Óculos de grau e sol das melhores marcas.">
+    <meta name="description"
+        content="Ótica Sanviêh - A visão perfeita começa aqui. Óculos de grau e sol das melhores marcas.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -54,21 +58,31 @@
     <style>
         :root {
             /* LIGHT MODE (Padrão inicial ou se escolhido) */
-            --color-coffee: 250 245 240;      /* #faf5f0 Fundo Claro */
-            --color-coffee-dark: 242 234 227; /* #f2eae3 Fundo Claro Secundário */
-            --color-nude: 44 35 31;           /* #2c231f Texto Escuro */
-            --color-hero-text: 26 21 19;      /* #1a1513 Título Escuro */
-            --color-terracotta: 194 139 123;  /* #c28b7b Terracota */
-            --color-terracotta-dark: 166 107 93; /* #a66b5d Terracota Escuro */
+            --color-coffee: 250 245 240;
+            /* #faf5f0 Fundo Claro */
+            --color-coffee-dark: 242 234 227;
+            /* #f2eae3 Fundo Claro Secundário */
+            --color-nude: 44 35 31;
+            /* #2c231f Texto Escuro */
+            --color-hero-text: 26 21 19;
+            /* #1a1513 Título Escuro */
+            --color-terracotta: 194 139 123;
+            /* #c28b7b Terracota */
+            --color-terracotta-dark: 166 107 93;
+            /* #a66b5d Terracota Escuro */
         }
 
         :root[data-theme="dark"] {
             /* DARK MODE PREMIUM */
-            --color-coffee: 44 35 31;         /* #2c231f Fundo Escuro */
-            --color-coffee-dark: 26 21 19;    /* #1a1513 Fundo Mais Escuro */
-            --color-nude: 217 200 189;        /* #d9c8bd Texto Claro */
-            --color-hero-text: 255 255 255;   /* #ffffff Título Branco */
-            --color-terracotta: 194 139 123;  
+            --color-coffee: 44 35 31;
+            /* #2c231f Fundo Escuro */
+            --color-coffee-dark: 26 21 19;
+            /* #1a1513 Fundo Mais Escuro */
+            --color-nude: 217 200 189;
+            /* #d9c8bd Texto Claro */
+            --color-hero-text: 255 255 255;
+            /* #ffffff Título Branco */
+            --color-terracotta: 194 139 123;
             --color-terracotta-dark: 166 107 93;
         }
 
@@ -80,21 +94,36 @@
         :root[data-theme="dark"] .map-theme-filter {
             filter: grayscale(100%) invert(90%) contrast(80%) sepia(20%) hue-rotate(330deg);
         }
+
         :root:not([data-theme="dark"]) .map-theme-filter {
             filter: grayscale(50%) sepia(20%) hue-rotate(330deg);
         }
 
-        .gsap-reveal { visibility: hidden; }
-        
-        body { transition: background-color 0.5s ease, color 0.5s ease; }
+        .gsap-reveal {
+            visibility: hidden;
+        }
+
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
 
         @keyframes demoGlow {
-            0%, 100% { box-shadow: 0 0 4px rgba(194,139,123,0.3); }
-            50% { box-shadow: 0 0 12px rgba(194,139,123,0.7), 0 0 20px rgba(194,139,123,0.3); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 4px rgba(194, 139, 123, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 12px rgba(194, 139, 123, 0.7), 0 0 20px rgba(194, 139, 123, 0.3);
+            }
         }
-        .demo-glow { animation: demoGlow 2.5s ease-in-out infinite; }
+
+        .demo-glow {
+            animation: demoGlow 2.5s ease-in-out infinite;
+        }
     </style>
-    
+
     <!-- Evitar flicker de tema -->
     <script>
         const savedTheme = localStorage.getItem('theme');
@@ -103,41 +132,62 @@
         }
     </script>
 </head>
-<body style="opacity: 0; transition: opacity 0.4s ease-in-out;" class="bg-coffee text-nude font-sans min-h-screen flex flex-col overflow-x-hidden selection:bg-terracotta selection:text-white">
-    
+
+<body style="opacity: 0; transition: opacity 0.4s ease-in-out;"
+    class="bg-coffee text-nude font-sans min-h-screen flex flex-col overflow-x-hidden selection:bg-terracotta selection:text-white">
+
     <!-- Header -->
     <header class="absolute top-0 w-full z-50 py-6 border-b border-nude/10 gsap-header">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="font-serif text-2xl tracking-wider text-nude font-semibold flex items-center gap-3 hover:text-terracotta transition-colors group">
-                <img src="./favicon.ico" alt="Logo Sanviêh" class="w-8 h-8 rounded-md group-hover:rotate-12 transition-transform duration-300" />
+            <a href="index.html"
+                class="font-serif text-2xl tracking-wider text-nude font-semibold flex items-center gap-3 hover:text-terracotta transition-colors group">
+                <img src="./favicon.ico" alt="Logo Sanviêh"
+                    class="w-8 h-8 rounded-md group-hover:rotate-12 transition-transform duration-300" />
                 Sanviêh
-                <span class="inline-flex rounded-full bg-terracotta/15 border border-terracotta/40 px-2.5 py-0.5 text-[9px] font-bold text-terracotta tracking-widest demo-glow">DEMO</span>
+                <span
+                    class="inline-flex rounded-full bg-terracotta/15 border border-terracotta/40 px-2.5 py-0.5 text-[9px] font-bold text-terracotta tracking-widest demo-glow">DEMO</span>
             </a>
-            
-            <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-8 text-sm font-medium text-nude/70 items-center absolute md:relative top-full left-0 w-full md:w-auto bg-coffeeDark md:bg-transparent p-6 md:p-0 border-b border-nude/10 md:border-none shadow-lg md:shadow-none transition-all duration-300">
+
+            <nav id="nav-menu"
+                class="hidden md:flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-8 text-sm font-medium text-nude/70 items-center absolute md:relative top-full left-0 w-full md:w-auto bg-coffeeDark md:bg-transparent p-6 md:p-0 border-b border-nude/10 md:border-none shadow-lg md:shadow-none transition-all duration-300">
                 <a href="#servicos" class="hover:text-terracotta transition-colors">Serviços</a>
                 <a href="#maison" class="hover:text-terracotta transition-colors">Nossa Sanviêh</a>
-                
+
                 <div class="hidden md:block h-4 w-px bg-nude/20"></div>
 
                 <div class="flex items-center gap-4 md:gap-8">
                     <!-- Theme Toggle Button -->
-                    <button id="theme-toggle" aria-label="Alternar Tema" class="w-8 h-8 rounded-full border border-nude/30 flex items-center justify-center hover:bg-nude/10 hover:text-terracotta transition-colors">
-                        <svg id="theme-icon-moon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                        <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <button id="theme-toggle" aria-label="Alternar Tema"
+                        class="w-8 h-8 rounded-full border border-nude/30 flex items-center justify-center hover:bg-nude/10 hover:text-terracotta transition-colors">
+                        <svg id="theme-icon-moon" class="w-4 h-4 hidden" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
+                        </svg>
+                        <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
                     </button>
 
                     <div class="flex items-center gap-2">
-                        <button id="btn-decrease-font" aria-label="Diminuir fonte" class="w-8 h-8 rounded-full border border-nude/30 flex items-center justify-center hover:bg-nude/10 hover:text-terracotta transition-colors">A-</button>
-                        <button id="btn-increase-font" aria-label="Aumentar fonte" class="w-8 h-8 rounded-full border border-nude/30 flex items-center justify-center hover:bg-nude/10 hover:text-terracotta transition-colors">A+</button>
+                        <button id="btn-decrease-font" aria-label="Diminuir fonte"
+                            class="w-8 h-8 rounded-full border border-nude/30 flex items-center justify-center hover:bg-nude/10 hover:text-terracotta transition-colors">A-</button>
+                        <button id="btn-increase-font" aria-label="Aumentar fonte"
+                            class="w-8 h-8 rounded-full border border-nude/30 flex items-center justify-center hover:bg-nude/10 hover:text-terracotta transition-colors">A+</button>
                     </div>
                 </div>
             </nav>
 
             <!-- Mobile Hamburger Button -->
-            <button id="mobile-menu-btn" aria-label="Menu Mobile" class="md:hidden text-nude p-2 hover:text-terracotta transition-colors">
+            <button id="mobile-menu-btn" aria-label="Menu Mobile"
+                class="md:hidden text-nude p-2 hover:text-terracotta transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
@@ -145,19 +195,24 @@
 
     <!-- Hero -->
     <main class="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
-        <div id="hero-bg" class="absolute inset-0 w-full h-[130%] -top-[15%] bg-[url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat z-0"></div>
+        <div id="hero-bg"
+            class="absolute inset-0 w-full h-[130%] -top-[15%] bg-[url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat z-0">
+        </div>
         <div class="absolute inset-0 bg-coffeeDark/80 backdrop-blur-[2px] z-0 transition-colors duration-500"></div>
 
         <div class="relative z-10 container mx-auto px-6 py-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
             <div class="flex-1 text-center lg:text-left gsap-hero-text">
-                <h1 id="hero-title" class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-heroText leading-tight mb-6 drop-shadow-xl transition-colors duration-500">
+                <h1 id="hero-title"
+                    class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-heroText leading-tight mb-6 drop-shadow-xl transition-colors duration-500">
                 </h1>
-                <p id="hero-subtitle" class="text-lg md:text-xl text-nude/90 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed transition-colors duration-500">
+                <p id="hero-subtitle"
+                    class="text-lg md:text-xl text-nude/90 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed transition-colors duration-500">
                 </p>
             </div>
 
             <div class="w-full max-w-md gsap-hero-card">
-                <div id="triage-card" class="bg-terracotta/10 backdrop-blur-xl border border-terracotta/20 rounded-3xl p-8 md:p-10 shadow-2xl relative min-h-[350px] flex flex-col justify-center transition-all duration-500 overflow-hidden animate-float hover:shadow-[0_20px_50px_rgba(194,139,123,0.3)]">
+                <div id="triage-card"
+                    class="bg-terracotta/10 backdrop-blur-xl border border-terracotta/20 rounded-3xl p-8 md:p-10 shadow-2xl relative min-h-[350px] flex flex-col justify-center transition-all duration-500 overflow-hidden animate-float hover:shadow-[0_20px_50px_rgba(194,139,123,0.3)]">
                     <div id="triage-card-content" class="w-full">
                         <div class="animate-pulse flex flex-col gap-4">
                             <div class="h-8 bg-nude/20 rounded w-3/4 mb-4"></div>
@@ -183,7 +238,8 @@
     </section>
 
     <!-- Maison -->
-    <section id="maison" class="py-32 bg-coffeeDark relative z-10 border-t border-nude/5 transition-colors duration-500">
+    <section id="maison"
+        class="py-32 bg-coffeeDark relative z-10 border-t border-nude/5 transition-colors duration-500">
         <div class="container mx-auto px-6 flex flex-col lg:flex-row gap-16 items-center">
             <div class="flex-1 text-center lg:text-left gsap-maison-text">
                 <h2 class="font-serif text-4xl md:text-5xl text-nude font-semibold mb-8">Nossa Sanviêh</h2>
@@ -193,13 +249,22 @@
                 <div class="space-y-6 text-left inline-block lg:block">
                     <div class="flex items-center gap-5 text-nude transition-colors duration-500">
                         <div class="w-12 h-12 rounded-full bg-terracotta/10 flex items-center justify-center shrink-0">
-                            <svg class="w-6 h-6 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <svg class="w-6 h-6 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
                         </div>
                         <span class="text-lg">Rua Samambaia, 1E - Redenção</span>
                     </div>
                     <div class="flex items-center gap-5 text-nude transition-colors duration-500">
                         <div class="w-12 h-12 rounded-full bg-terracotta/10 flex items-center justify-center shrink-0">
-                            <svg class="w-6 h-6 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <svg class="w-6 h-6 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                         </div>
                         <div class="text-base">
                             <p>Seg a Sex: 09:00 - 17:30</p>
@@ -209,14 +274,11 @@
                     </div>
                 </div>
             </div>
-            <div class="flex-1 w-full min-h-[350px] md:min-h-[450px] rounded-3xl overflow-hidden border border-nude/10 shadow-2xl gsap-maison-map relative group hover:shadow-[0_20px_50px_rgba(194,139,123,0.2)] transition-all duration-500">
-                <iframe 
-                    src="https://maps.google.com/maps?q=%C3%93tica%20Sanvi%C3%AAh%2C%20R.%20Samambaia%20-%20Reden%C3%A7%C3%A3o%2C%20Manaus%20-%20AM%2C%2069044-029&t=&z=17&ie=UTF8&iwloc=&output=embed" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
+            <div
+                class="flex-1 w-full min-h-[350px] md:min-h-[450px] rounded-3xl overflow-hidden border border-nude/10 shadow-2xl gsap-maison-map relative group hover:shadow-[0_20px_50px_rgba(194,139,123,0.2)] transition-all duration-500">
+                <iframe
+                    src="https://maps.google.com/maps?q=%C3%93tica%20Sanvi%C3%AAh%2C%20R.%20Samambaia%20-%20Reden%C3%A7%C3%A3o%2C%20Manaus%20-%20AM%2C%2069044-029&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     class="map-theme-filter absolute inset-0 transition-all duration-500">
                 </iframe>
@@ -225,37 +287,60 @@
     </section>
 
     <!-- WhatsApp Floating Button Premium -->
-    <a href="https://wa.me/5592999987960?text=Olá! Vim pelo site da Sanviêh e gostaria de falar com um consultor." target="_blank" aria-label="Fale conosco no WhatsApp" class="fixed bottom-8 right-8 z-50 bg-terracotta text-white p-4 rounded-full shadow-[0_4px_20px_rgba(194,139,123,0.4)] hover:bg-terracottaDark hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(194,139,123,0.6)] transition-all duration-300 flex items-center justify-center animate-bounce group">
-        <span class="absolute right-full mr-4 bg-coffee text-nude px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-xl border border-terracotta/20">Falar com Consultor</span>
-        <svg class="w-8 h-8 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.146.552 4.169 1.543 5.952L.15 24l6.177-1.393c1.713.921 3.655 1.424 5.704 1.424 6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 21.846c-1.83 0-3.565-.472-5.127-1.332l-.367-.218-3.799.856.87-3.71-.24-.381c-.947-1.503-1.447-3.267-1.447-5.03 0-5.418 4.41-9.828 9.828-9.828s9.828 4.41 9.828 9.828-4.41 9.828-9.828 9.828zm5.383-7.36c-.295-.148-1.745-.862-2.016-.961-.271-.099-.467-.148-.664.148-.197.295-.762.961-.935 1.158-.172.197-.345.221-.64.074-2.124-1.062-3.666-2.062-4.838-4.142-.172-.296-.018-.456.13-.604.133-.133.295-.345.443-.517.148-.172.197-.295.295-.492.098-.197.049-.369-.025-.517-.074-.148-.664-1.6-.909-2.191-.239-.575-.482-.497-.664-.506-.172-.008-.369-.008-.566-.008-.197 0-.517.074-.788.369-.271.295-1.033 1.009-1.033 2.46s1.058 2.854 1.205 3.051c.148.197 2.08 3.174 5.04 4.453 1.95 1.058 2.502.935 3.293.762.791-.172 2.378-.971 2.712-1.908.334-.937.334-1.737.235-1.908-.098-.171-.344-.27-.639-.418z"/></svg>
+    <a href="https://wa.me/5592999987960?text=Olá! Vim pelo site da Sanviêh e gostaria de falar com um consultor."
+        target="_blank" aria-label="Fale conosco no WhatsApp"
+        class="fixed bottom-8 right-8 z-50 bg-terracotta text-white p-4 rounded-full shadow-[0_4px_20px_rgba(194,139,123,0.4)] hover:bg-terracottaDark hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(194,139,123,0.6)] transition-all duration-300 flex items-center justify-center animate-bounce group">
+        <span
+            class="absolute right-full mr-4 bg-coffee text-nude px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-xl border border-terracotta/20">Falar
+            com Consultor</span>
+        <svg class="w-8 h-8 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+            <path
+                d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.146.552 4.169 1.543 5.952L.15 24l6.177-1.393c1.713.921 3.655 1.424 5.704 1.424 6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 21.846c-1.83 0-3.565-.472-5.127-1.332l-.367-.218-3.799.856.87-3.71-.24-.381c-.947-1.503-1.447-3.267-1.447-5.03 0-5.418 4.41-9.828 9.828-9.828s9.828 4.41 9.828 9.828-4.41 9.828-9.828 9.828zm5.383-7.36c-.295-.148-1.745-.862-2.016-.961-.271-.099-.467-.148-.664.148-.197.295-.762.961-.935 1.158-.172.197-.345.221-.64.074-2.124-1.062-3.666-2.062-4.838-4.142-.172-.296-.018-.456.13-.604.133-.133.295-.345.443-.517.148-.172.197-.295.295-.492.098-.197.049-.369-.025-.517-.074-.148-.664-1.6-.909-2.191-.239-.575-.482-.497-.664-.506-.172-.008-.369-.008-.566-.008-.197 0-.517.074-.788.369-.271.295-1.033 1.009-1.033 2.46s1.058 2.854 1.205 3.051c.148.197 2.08 3.174 5.04 4.453 1.95 1.058 2.502.935 3.293.762.791-.172 2.378-.971 2.712-1.908.334-.937.334-1.737.235-1.908-.098-.171-.344-.27-.639-.418z" />
+        </svg>
     </a>
 
     <!-- PWA Install Prompt Banner -->
-    <div id="pwa-install-banner" class="fixed top-4 left-4 right-4 z-[70] hidden max-w-sm mx-auto bg-coffee border border-terracotta/30 shadow-[0_10px_40px_rgba(0,0,0,0.4)] rounded-2xl p-4 transform -translate-y-full transition-transform duration-500 ease-out">
+    <div id="pwa-install-banner"
+        class="fixed top-4 left-4 right-4 z-[70] hidden max-w-sm mx-auto bg-coffee border border-terracotta/30 shadow-[0_10px_40px_rgba(0,0,0,0.4)] rounded-2xl p-4 transform -translate-y-full transition-transform duration-500 ease-out">
         <div class="flex items-center justify-between gap-4">
             <img src="./favicon.ico" alt="Sanviêh App" class="w-12 h-12 rounded-xl shadow-sm border border-nude/10">
             <div class="flex-1">
                 <h3 class="font-serif font-bold text-nude text-sm">Sanviêh</h3>
-                <p class="text-xs text-nude/70">Instale nosso aplicativo oficial para acesso rápido e uma melhor experiência.</p>
+                <p class="text-xs text-nude/70">Instale nosso aplicativo oficial para acesso rápido e uma melhor
+                    experiência.</p>
             </div>
             <div class="flex flex-col gap-2">
-                <button id="pwa-install-btn" class="bg-terracotta hover:bg-terracottaDark text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors whitespace-nowrap">Instalar</button>
-                <button onclick="hidePwaBanner()" class="text-nude/50 hover:text-nude text-xs font-medium text-right px-2">Agora não</button>
+                <button id="pwa-install-btn"
+                    class="bg-terracotta hover:bg-terracottaDark text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors whitespace-nowrap">Instalar</button>
+                <button onclick="hidePwaBanner()"
+                    class="text-nude/50 hover:text-nude text-xs font-medium text-right px-2">Agora não</button>
             </div>
         </div>
     </div>
 
     <!-- Cookie Consent Banner LGPD -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[60] transform translate-y-full transition-transform duration-500 ease-out">
-        <div class="bg-coffeeDark/95 backdrop-blur-xl border-t border-terracotta/20 shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
+    <div id="cookie-banner"
+        class="fixed bottom-0 left-0 right-0 z-[60] transform translate-y-full transition-transform duration-500 ease-out">
+        <div
+            class="bg-coffeeDark/95 backdrop-blur-xl border-t border-terracotta/20 shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
             <div class="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-3 text-sm text-nude/80 font-light leading-relaxed text-center sm:text-left">
-                    <svg class="w-5 h-5 text-terracotta flex-shrink-0 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                    <p>Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="politica-privacidade.html" class="text-terracotta hover:underline">Política de Privacidade</a> e <a href="termos-uso.html" class="text-terracotta hover:underline">Termos de Uso</a>.</p>
+                <div
+                    class="flex items-center gap-3 text-sm text-nude/80 font-light leading-relaxed text-center sm:text-left">
+                    <svg class="w-5 h-5 text-terracotta flex-shrink-0 hidden sm:block" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <p>Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa
+                        <a href="politica-privacidade.html" class="text-terracotta hover:underline">Política de
+                            Privacidade</a> e <a href="termos-uso.html" class="text-terracotta hover:underline">Termos
+                            de Uso</a>.</p>
                 </div>
                 <div class="flex gap-3 flex-shrink-0">
-                    <button onclick="acceptCookies()" class="px-6 py-2.5 rounded-xl bg-terracotta hover:bg-terracottaDark text-white text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">Aceitar</button>
-                    <button onclick="declineCookies()" class="px-6 py-2.5 rounded-xl border border-nude/20 text-nude/60 hover:text-nude hover:border-nude/40 text-sm font-medium transition-all duration-300">Recusar</button>
+                    <button onclick="acceptCookies()"
+                        class="px-6 py-2.5 rounded-xl bg-terracotta hover:bg-terracottaDark text-white text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">Aceitar</button>
+                    <button onclick="declineCookies()"
+                        class="px-6 py-2.5 rounded-xl border border-nude/20 text-nude/60 hover:text-nude hover:border-nude/40 text-sm font-medium transition-all duration-300">Recusar</button>
                 </div>
             </div>
         </div>
@@ -265,18 +350,26 @@
     <footer class="bg-coffee border-t border-nude/10 py-12 relative z-10 transition-colors duration-500">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-nude/60">
             <div class="flex flex-col items-center md:items-start gap-2">
-                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-serif text-2xl text-terracotta mb-2 font-bold tracking-wide hover:opacity-80 transition-opacity">Sanviêh</a>
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+                    class="font-serif text-2xl text-terracotta mb-2 font-bold tracking-wide hover:opacity-80 transition-opacity">Sanviêh</a>
                 <p>&copy; <span id="current-year"></span> Ótica Sanviêh. Todos os direitos reservados.</p>
             </div>
             <div class="flex items-center space-x-6 mt-6 md:mt-0">
-                <a href="https://www.instagram.com/oticasanvieh/" target="_blank" class="hover:text-terracotta transition-colors" aria-label="Instagram">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <a href="https://www.instagram.com/oticasanvieh/" target="_blank"
+                    class="hover:text-terracotta transition-colors" aria-label="Instagram">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
                 </a>
-                <a href="politica-privacidade.html" class="hover:text-terracotta transition-colors">Política de Privacidade</a>
+                <a href="politica-privacidade.html" class="hover:text-terracotta transition-colors">Política de
+                    Privacidade</a>
                 <a href="termos-uso.html" class="hover:text-terracotta transition-colors">Termos de Uso</a>
             </div>
             <div class="mt-8 md:mt-0 flex flex-col items-center md:items-end gap-2">
-                <a href="https://wa.me/5592984899955?text=Ol%C3%A1%2C%20gostei%20da%20demonstra%C3%A7%C3%A3o.%20Tenho%20interesse%20em%20fechar%20o%20desenvolvimento%20completo%20do%20site." target="_blank" rel="noopener noreferrer" class="text-xs text-neutral-500 hover:text-terracotta transition-colors duration-300">
+                <a href="https://wa.me/5592984899955?text=Ol%C3%A1%2C%20gostei%20da%20demonstra%C3%A7%C3%A3o.%20Tenho%20interesse%20em%20fechar%20o%20desenvolvimento%20completo%20do%20site."
+                    target="_blank" rel="noopener noreferrer"
+                    class="text-xs text-neutral-500 hover:text-terracotta transition-colors duration-300">
                     Desenvolvido por Willyan Souza Brito
                 </a>
             </div>
@@ -286,7 +379,7 @@
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+
     <script src="js/script.js?v=7"></script>
     <script>
         if ('serviceWorker' in navigator) {
@@ -297,4 +390,5 @@
         document.getElementById('current-year').innerText = new Date().getFullYear();
     </script>
 </body>
+
 </html>
