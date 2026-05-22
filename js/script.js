@@ -262,11 +262,11 @@ function initAnimations() {
 
     // 2. Services Grid Stagger Reveal
     gsap.fromTo(".gsap-service-item", 
-        { y: 60, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
             y: 0, opacity: 1,
-            duration: 0.8,
-            stagger: 0.15,
+            duration: 0.5,
+            stagger: 0.1,
             ease: "power2.out",
             scrollTrigger: {
                 trigger: "#servicos",
@@ -279,10 +279,10 @@ function initAnimations() {
 
     // Section Title
     gsap.fromTo(".gsap-section-title",
-        { y: 30, opacity: 0 },
+        { y: 20, opacity: 0 },
         {
             y: 0, opacity: 1,
-            duration: 0.8,
+            duration: 0.5,
             ease: "power2.out",
             scrollTrigger: {
                 trigger: "#servicos",
@@ -295,11 +295,11 @@ function initAnimations() {
 
     // Maison Section Reveal
     gsap.fromTo(".gsap-maison-text",
-        { x: -50, opacity: 0 },
+        { x: -30, opacity: 0 },
         {
             x: 0, opacity: 1,
-            duration: 1,
-            ease: "power3.out",
+            duration: 0.6,
+            ease: "power2.out",
             scrollTrigger: {
                 trigger: "#maison",
                 start: "top 85%",
@@ -310,11 +310,11 @@ function initAnimations() {
     );
 
     gsap.fromTo(".gsap-maison-map", 
-        { x: 50, opacity: 0 },
+        { x: 30, opacity: 0 },
         {
             x: 0, opacity: 1,
-            duration: 1,
-            ease: "power3.out",
+            duration: 0.6,
+            ease: "power2.out",
             scrollTrigger: {
                 trigger: "#maison",
                 start: "top 95%",
