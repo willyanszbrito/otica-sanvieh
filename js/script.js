@@ -163,6 +163,7 @@ async function loadDatabase() {
         // Init GSAP animations after DOM is ready
         setTimeout(() => {
             initAnimations();
+            initMicroInteractions(); // Nova função para animações contínuas
             ScrollTrigger.refresh(); // Force recalculation
         }, 100);
 
@@ -254,19 +255,74 @@ function initAnimations() {
         ease: "power3.out",
         scrollTrigger: {
             trigger: "#maison",
-            start: "top 80%"
+            start: "top 85%"
         }
     });
 
-    gsap.from(".gsap-maison-map", {
-        x: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: "#maison",
-            start: "top 80%"
+    gsap.fromTo(".gsap-maison-map", 
+        {
+            x: 50,
+            opacity: 0
+        },
+        {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: "#maison",
+                start: "top 95%" // Alterado para 95% para garantir que dispara no mobile
+            }
         }
+    );
+}
+
+// ==========================================
+// Micro-interactions (Continuous)
+// ==========================================
+function initMicroInteractions() {
+    // Hero Mouse Parallax Effect
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const xPos = (e.clientX / window.innerWidth - 0.5) * 20; // max 20px movement
+            const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            gsap.to(".gsap-hero-text", {
+                x: xPos,
+                y: yPos,
+                duration: 1,
+                ease: "power2.out"
+            });
+            
+            gsap.to(".gsap-hero-card", {
+                x: xPos * -1.5, // Move no sentido oposto para dar profundidade
+                y: yPos * -1.5,
+                duration: 1.5,
+                ease: "power2.out"
+            });
+        });
+        
+        // Reset position on mouse leave
+        heroSection.addEventListener('mouseleave', () => {
+            gsap.to(".gsap-hero-text, .gsap-hero-card", {
+                x: 0,
+                y: 0,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    }
+
+    // Continuous float animation for Service Icons
+    gsap.utils.toArray('.gsap-service-item svg').forEach(icon => {
+        gsap.to(icon, {
+            y: -5,
+            duration: 2,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1
+        });
     });
 }
 
