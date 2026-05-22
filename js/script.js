@@ -233,7 +233,8 @@ function initAnimations() {
             scrollTrigger: {
                 trigger: "#servicos",
                 start: "top 80%",
-                toggleActions: "play none none reverse"
+                end: "bottom 20%",
+                toggleActions: "play reverse play reverse"
             }
         }
     );
@@ -248,7 +249,8 @@ function initAnimations() {
             scrollTrigger: {
                 trigger: "#servicos",
                 start: "top 85%",
-                toggleActions: "play none none reverse"
+                end: "bottom 20%",
+                toggleActions: "play reverse play reverse"
             }
         }
     );
@@ -263,7 +265,8 @@ function initAnimations() {
             scrollTrigger: {
                 trigger: "#maison",
                 start: "top 85%",
-                toggleActions: "play none none reverse"
+                end: "bottom 20%",
+                toggleActions: "play reverse play reverse"
             }
         }
     );
@@ -277,7 +280,8 @@ function initAnimations() {
             scrollTrigger: {
                 trigger: "#maison",
                 start: "top 95%",
-                toggleActions: "play none none reverse"
+                end: "bottom 20%",
+                toggleActions: "play reverse play reverse"
             }
         }
     );
