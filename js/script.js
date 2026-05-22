@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initA11y();
     loadDatabase();
+    
+    // Anti-FOUC (Flash of Unstyled Content) para Tailwind CDN
+    // Dá um tempo mínimo para o script do Tailwind injetar as tags de estilo
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 150);
 });
 
 // Global state
