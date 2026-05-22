@@ -67,6 +67,12 @@
         }
 
         body { transition: background-color 0.5s ease, color 0.5s ease; }
+
+        @keyframes demoGlow {
+            0%, 100% { box-shadow: 0 0 4px rgba(194,139,123,0.3); }
+            50% { box-shadow: 0 0 12px rgba(194,139,123,0.7), 0 0 20px rgba(194,139,123,0.3); }
+        }
+        .demo-glow { animation: demoGlow 2.5s ease-in-out infinite; }
     </style>
     
     <!-- Evitar flicker de tema -->
@@ -92,13 +98,8 @@
             <!-- Logo Centralizado -->
             <a href="index.html" class="font-serif text-2xl tracking-wider text-nude font-semibold flex items-center justify-center gap-3 hover:text-terracotta transition-colors group">
                 <img src="./favicon.ico" alt="Logo Sanviêh" class="w-8 h-8 rounded-md group-hover:rotate-12 transition-transform duration-300" />
-                <div class="flex flex-col">
-                    Sanviêh
-                    <span class="relative flex h-4 items-center justify-start">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-terracotta opacity-30"></span>
-                        <span class="relative inline-flex rounded-full bg-terracotta/20 border border-terracotta/50 px-2 py-0 text-[9px] font-bold text-terracotta tracking-widest shadow-[0_0_8px_rgba(194,139,123,0.5)]">DEMO</span>
-                    </span>
-                </div>
+                Sanviêh
+                <span class="inline-flex rounded-full bg-terracotta/15 border border-terracotta/40 px-2.5 py-0.5 text-[9px] font-bold text-terracotta tracking-widest demo-glow">DEMO</span>
             </a>
             
             <div class="flex-1 flex justify-end">
