@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initA11y();
     initCookieBanner();
+    initPwaInstall();
     loadDatabase();
     
     // Anti-FOUC (Flash of Unstyled Content) para Tailwind CDN
@@ -48,6 +49,70 @@ function hideCookieBanner() {
         banner.classList.remove('translate-y-0');
         banner.classList.add('translate-y-full');
         setTimeout(() => banner.remove(), 600);
+    }
+}
+
+// ==========================================
+// PWA Install Prompt
+// ==========================================
+let deferredPrompt;
+
+function initPwaInstall() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Impede que o Chrome mostre o mini-infobar padrão
+        e.preventDefault();
+        // Guarda o evento para acionar o prompt depois
+        deferredPrompt = e;
+        
+        // Se o usuário ainda não fechou o banner nesta sessão
+        if (!sessionStorage.getItem('pwa_banner_closed')) {
+            showPwaBanner();
+        }
+    });
+
+    const installBtn = document.getElementById('pwa-install-btn');
+    if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+            hidePwaBanner();
+            if (deferredPrompt) {
+                // Mostra o prompt nativo de instalação
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    pushToDataLayer('pwa_install', { status: 'accepted' });
+                }
+                deferredPrompt = null;
+            }
+        });
+    }
+
+    // Se o app for instalado com sucesso
+    window.addEventListener('appinstalled', () => {
+        hidePwaBanner();
+        deferredPrompt = null;
+        pushToDataLayer('pwa_install', { status: 'installed' });
+    });
+}
+
+function showPwaBanner() {
+    const banner = document.getElementById('pwa-install-banner');
+    if (banner) {
+        banner.classList.remove('hidden');
+        // Pequeno delay para a transição CSS funcionar
+        setTimeout(() => {
+            banner.classList.remove('-translate-y-full');
+            banner.classList.add('translate-y-0');
+        }, 50);
+    }
+}
+
+function hidePwaBanner() {
+    const banner = document.getElementById('pwa-install-banner');
+    if (banner) {
+        banner.classList.remove('translate-y-0');
+        banner.classList.add('-translate-y-full');
+        sessionStorage.setItem('pwa_banner_closed', 'true');
+        setTimeout(() => banner.classList.add('hidden'), 500);
     }
 }
 
