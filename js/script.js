@@ -222,62 +222,62 @@ function initAnimations() {
         ease: "power3.out"
     });
 
-    // 2. Services Grid Stagger Reveal (Fixed to fromTo to guarantee end state)
+    // 2. Services Grid Stagger Reveal
     gsap.fromTo(".gsap-service-item", 
+        { y: 60, opacity: 0 },
         {
-            y: 60,
-            opacity: 0
-        },
-        {
-            y: 0,
-            opacity: 1,
+            y: 0, opacity: 1,
             duration: 0.8,
             stagger: 0.15,
             ease: "power2.out",
             scrollTrigger: {
                 trigger: "#servicos",
-                start: "top 80%"
+                start: "top 80%",
+                toggleActions: "play none none reverse"
             }
         }
     );
 
     // Section Title
-    gsap.from(".gsap-section-title", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#servicos",
-            start: "top 85%"
+    gsap.fromTo(".gsap-section-title",
+        { y: 30, opacity: 0 },
+        {
+            y: 0, opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: "#servicos",
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            }
         }
-    });
+    );
 
     // Maison Section Reveal
-    gsap.from(".gsap-maison-text", {
-        x: -50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: "#maison",
-            start: "top 85%"
-        }
-    });
-
-    gsap.fromTo(".gsap-maison-map", 
+    gsap.fromTo(".gsap-maison-text",
+        { x: -50, opacity: 0 },
         {
-            x: 50,
-            opacity: 0
-        },
-        {
-            x: 0,
-            opacity: 1,
+            x: 0, opacity: 1,
             duration: 1,
             ease: "power3.out",
             scrollTrigger: {
                 trigger: "#maison",
-                start: "top 95%" // Alterado para 95% para garantir que dispara no mobile
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            }
+        }
+    );
+
+    gsap.fromTo(".gsap-maison-map", 
+        { x: 50, opacity: 0 },
+        {
+            x: 0, opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: "#maison",
+                start: "top 95%",
+                toggleActions: "play none none reverse"
             }
         }
     );
@@ -396,6 +396,22 @@ function transitionCard(renderFunc) {
 }
 
 // ==========================================
+// Typewriter Effect
+// ==========================================
+function typewriterEffect(element, text, speed = 30) {
+    element.textContent = '';
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+// ==========================================
 // Triage System
 // ==========================================
 function renderTriageStep1() {
@@ -403,18 +419,20 @@ function renderTriageStep1() {
     const stepData = dbData.triage.step1;
 
     let optionsHtml = stepData.options.map((opt) => `
-        <button class="w-full text-left px-6 py-4 rounded-xl border border-terracotta/30 hover:bg-terracotta/10 hover:border-terracotta/60 hover:shadow-[0_0_15px_rgba(194,139,123,0.2)] text-nude transition-all duration-300 mb-4 font-medium backdrop-blur-sm shadow-sm" 
+        <button class="triage-option w-full text-left px-6 py-4 rounded-xl border border-terracotta/30 hover:bg-terracotta/10 hover:border-terracotta/60 hover:shadow-[0_0_15px_rgba(194,139,123,0.2)] text-nude transition-all duration-300 mb-4 font-medium backdrop-blur-sm shadow-sm" 
             onclick="handleStep1('${opt.value}')" aria-label="${opt.label}">
             ${opt.label}
         </button>
     `).join('');
 
     cardContent.innerHTML = `
-        <h2 class="font-serif text-2xl md:text-3xl font-medium text-heroText mb-8 leading-tight tracking-wide">
-            ${stepData.question}
-        </h2>
-        ${optionsHtml}
+        <h2 id="triage-question" class="font-serif text-2xl md:text-3xl font-medium text-heroText mb-8 leading-tight tracking-wide"></h2>
+        <div id="triage-options" style="opacity:0">${optionsHtml}</div>
     `;
+    typewriterEffect(document.getElementById('triage-question'), stepData.question, 30);
+    setTimeout(() => {
+        gsap.to('#triage-options', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
+    }, stepData.question.length * 30 + 200);
 }
 
 function handleStep1(value) {
@@ -428,18 +446,24 @@ function renderTriageStep2() {
     const stepData = dbData.triage.step2;
 
     let optionsHtml = stepData.options.map((opt) => `
-        <button class="w-full text-left px-6 py-4 rounded-xl border border-terracotta/30 hover:bg-terracotta/10 hover:border-terracotta/60 hover:shadow-[0_0_15px_rgba(194,139,123,0.2)] text-nude transition-all duration-300 mb-4 font-medium backdrop-blur-sm shadow-sm" 
+        <button class="triage-option w-full text-left px-6 py-4 rounded-xl border border-terracotta/30 hover:bg-terracotta/10 hover:border-terracotta/60 hover:shadow-[0_0_15px_rgba(194,139,123,0.2)] text-nude transition-all duration-300 mb-4 font-medium backdrop-blur-sm shadow-sm" 
             onclick="handleStep2('${opt.value}')" aria-label="${opt.label}">
             ${opt.label}
         </button>
     `).join('');
 
     cardContent.innerHTML = `
-        <h2 class="font-serif text-xl md:text-2xl font-medium text-heroText mb-8 leading-relaxed tracking-wide">
-            ${stepData.question}
-        </h2>
-        ${optionsHtml}
+        <button onclick="transitionCard(renderTriageStep1)" class="flex items-center gap-2 text-nude/50 hover:text-terracotta text-sm mb-6 transition-colors group">
+            <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Voltar
+        </button>
+        <h2 id="triage-question" class="font-serif text-xl md:text-2xl font-medium text-heroText mb-8 leading-relaxed tracking-wide"></h2>
+        <div id="triage-options" style="opacity:0">${optionsHtml}</div>
     `;
+    typewriterEffect(document.getElementById('triage-question'), stepData.question, 30);
+    setTimeout(() => {
+        gsap.to('#triage-options', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
+    }, stepData.question.length * 30 + 200);
 }
 
 function handleStep2(value) {
@@ -456,7 +480,11 @@ function renderLeadForm() {
     const stepData = dbData.triage.step3;
 
     cardContent.innerHTML = `
-        <h2 class="font-serif text-3xl font-medium text-heroText mb-2 tracking-wide">${stepData.title}</h2>
+        <button onclick="transitionCard(renderTriageStep2)" class="flex items-center gap-2 text-nude/50 hover:text-terracotta text-sm mb-6 transition-colors group">
+            <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Voltar
+        </button>
+        <h2 id="triage-question" class="font-serif text-3xl font-medium text-heroText mb-2 tracking-wide"></h2>
         <p class="text-nude/70 text-sm mb-8 font-light">${stepData.subtitle}</p>
         
         <form id="lead-form" onsubmit="handleLeadSubmit(event)" class="pb-2">
@@ -490,6 +518,7 @@ function renderLeadForm() {
 
     const inputTel = document.getElementById('lead-whatsapp');
     inputTel.addEventListener('input', applyWhatsappMask);
+    typewriterEffect(document.getElementById('triage-question'), stepData.title, 30);
 }
 
 function applyWhatsappMask(e) {
@@ -587,6 +616,10 @@ function renderResult() {
             <h2 class="font-serif text-3xl font-medium text-heroText mb-4 tracking-wide">Triagem Concluída</h2>
             <p class="text-nude/80 font-light mb-8 leading-relaxed">${resultData.message}</p>
             ${ctaHtml}
+            <button onclick="triageState.age=null;triageState.condition=null;transitionCard(renderTriageStep1)" class="mt-6 flex items-center gap-2 text-nude/40 hover:text-terracotta text-xs mx-auto transition-colors group">
+                <svg class="w-3 h-3 group-hover:rotate-[-360deg] transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                Refazer triagem
+            </button>
         </div>
     `;
 }
