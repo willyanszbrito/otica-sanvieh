@@ -6,8 +6,13 @@
     <title>Sanviêh | A Visão Perfeita</title>
     
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2c231f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sanviêh">
+    <meta name="description" content="Ótica Sanviêh - A visão perfeita começa aqui. Óculos de grau e sol das melhores marcas.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -217,6 +222,22 @@
         <span class="absolute right-full mr-4 bg-coffee text-nude px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-xl border border-terracotta/20">Falar com Consultor</span>
         <svg class="w-8 h-8 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.146.552 4.169 1.543 5.952L.15 24l6.177-1.393c1.713.921 3.655 1.424 5.704 1.424 6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 21.846c-1.83 0-3.565-.472-5.127-1.332l-.367-.218-3.799.856.87-3.71-.24-.381c-.947-1.503-1.447-3.267-1.447-5.03 0-5.418 4.41-9.828 9.828-9.828s9.828 4.41 9.828 9.828-4.41 9.828-9.828 9.828zm5.383-7.36c-.295-.148-1.745-.862-2.016-.961-.271-.099-.467-.148-.664.148-.197.295-.762.961-.935 1.158-.172.197-.345.221-.64.074-2.124-1.062-3.666-2.062-4.838-4.142-.172-.296-.018-.456.13-.604.133-.133.295-.345.443-.517.148-.172.197-.295.295-.492.098-.197.049-.369-.025-.517-.074-.148-.664-1.6-.909-2.191-.239-.575-.482-.497-.664-.506-.172-.008-.369-.008-.566-.008-.197 0-.517.074-.788.369-.271.295-1.033 1.009-1.033 2.46s1.058 2.854 1.205 3.051c.148.197 2.08 3.174 5.04 4.453 1.95 1.058 2.502.935 3.293.762.791-.172 2.378-.971 2.712-1.908.334-.937.334-1.737.235-1.908-.098-.171-.344-.27-.639-.418z"/></svg>
     </a>
+
+    <!-- Cookie Consent Banner LGPD -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[60] transform translate-y-full transition-transform duration-500 ease-out">
+        <div class="bg-coffeeDark/95 backdrop-blur-xl border-t border-terracotta/20 shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">
+            <div class="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 text-sm text-nude/80 font-light leading-relaxed text-center sm:text-left">
+                    <svg class="w-5 h-5 text-terracotta flex-shrink-0 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <p>Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="politica-privacidade.html" class="text-terracotta hover:underline">Política de Privacidade</a>.</p>
+                </div>
+                <div class="flex gap-3 flex-shrink-0">
+                    <button onclick="acceptCookies()" class="px-6 py-2.5 rounded-xl bg-terracotta hover:bg-terracottaDark text-white text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">Aceitar</button>
+                    <button onclick="declineCookies()" class="px-6 py-2.5 rounded-xl border border-nude/20 text-nude/60 hover:text-nude hover:border-nude/40 text-sm font-medium transition-all duration-300">Recusar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-coffee border-t border-nude/10 py-12 relative z-10 transition-colors duration-500">

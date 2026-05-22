@@ -4,14 +4,52 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initMobileMenu();
     initA11y();
+    initCookieBanner();
     loadDatabase();
     
     // Anti-FOUC (Flash of Unstyled Content) para Tailwind CDN
-    // Dá um tempo mínimo para o script do Tailwind injetar as tags de estilo
     setTimeout(() => {
         document.body.style.opacity = '1';
     }, 150);
 });
+
+// ==========================================
+// Cookie Consent LGPD
+// ==========================================
+function initCookieBanner() {
+    const consent = localStorage.getItem('cookie_consent');
+    if (consent) return; // Já respondeu
+
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    // Mostra o banner com delay para não atrapalhar o carregamento
+    setTimeout(() => {
+        banner.classList.remove('translate-y-full');
+        banner.classList.add('translate-y-0');
+    }, 2000);
+}
+
+function acceptCookies() {
+    localStorage.setItem('cookie_consent', 'accepted');
+    pushToDataLayer('cookie_consent', { status: 'accepted' });
+    hideCookieBanner();
+}
+
+function declineCookies() {
+    localStorage.setItem('cookie_consent', 'declined');
+    pushToDataLayer('cookie_consent', { status: 'declined' });
+    hideCookieBanner();
+}
+
+function hideCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+        banner.classList.remove('translate-y-0');
+        banner.classList.add('translate-y-full');
+        setTimeout(() => banner.remove(), 600);
+    }
+}
 
 // Global state
 let dbData = null;
