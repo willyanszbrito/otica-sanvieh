@@ -612,7 +612,7 @@ function renderLeadForm() {
                 <input type="checkbox" id="lead-lgpd" required aria-required="true" 
                     class="mt-1 w-4 h-4 accent-terracotta rounded border-terracotta/30 bg-transparent cursor-pointer transition-transform group-hover:scale-110">
                 <label for="lead-lgpd" class="text-xs text-nude/70 font-light leading-relaxed cursor-pointer transition-colors group-hover:text-nude">
-                    Concordo com a <a href="politica-privacidade.html" target="_blank" class="text-terracotta hover:underline">Política de Privacidade</a> e autorizo o contato via WhatsApp.
+                    Concordo com a <a href="politica-privacidade.html" target="_blank" class="text-terracotta hover:underline">Política de Privacidade</a> e os <a href="termos-uso.html" target="_blank" class="text-terracotta hover:underline">Termos de Uso</a> e autorizo o contato via WhatsApp.
                 </label>
             </div>
             
