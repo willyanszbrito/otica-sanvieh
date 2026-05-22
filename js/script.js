@@ -203,6 +203,9 @@ function initTheme() {
     updateIcons();
 
     themeBtn.addEventListener('click', () => {
+        // Animação de rotação do botão
+        gsap.to(themeBtn, { rotation: "+=360", duration: 0.5, ease: "back.out(1.5)" });
+
         if (root.getAttribute('data-theme') === 'dark') {
             root.removeAttribute('data-theme');
             localStorage.setItem('theme', 'light');
@@ -210,7 +213,8 @@ function initTheme() {
             root.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
         }
-        updateIcons();
+        // Pequeno delay para a troca de ícone ficar no meio da animação
+        setTimeout(updateIcons, 150);
     });
 }
 
@@ -224,25 +228,45 @@ function initMobileMenu() {
 
     if(!btn || !nav) return;
 
+    const svgIcon = btn.querySelector('svg');
+
     btn.addEventListener('click', () => {
         const isOpen = !nav.classList.contains('hidden');
         if(isOpen) {
-            nav.classList.add('hidden');
-            nav.classList.remove('flex');
-            icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            // Animação de fechar o menu
+            gsap.to(nav, { opacity: 0, y: -20, duration: 0.3, ease: "power2.in", onComplete: () => {
+                nav.classList.add('hidden');
+                nav.classList.remove('flex');
+                gsap.set(nav, { clearProps: "all" });
+            }});
+            // Animação do botão voltar para hamburger
+            gsap.to(svgIcon, { rotation: 0, duration: 0.3, ease: "power2.inOut" });
+            setTimeout(() => icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'), 150);
         } else {
+            // Animação de abrir o menu
             nav.classList.remove('hidden');
             nav.classList.add('flex');
-            icon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // X icon
+            gsap.fromTo(nav, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
+            
+            // Animação do botão para o X
+            gsap.to(svgIcon, { rotation: 180, duration: 0.4, ease: "power2.inOut" });
+            setTimeout(() => icon.setAttribute('d', 'M6 18L18 6M6 6l12 12'), 200);
         }
     });
 
     // Close on link click
     nav.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            nav.classList.add('hidden');
-            nav.classList.remove('flex');
-            icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            // Verifica se está mobile
+            if(window.innerWidth < 768) {
+                gsap.to(nav, { opacity: 0, y: -20, duration: 0.3, ease: "power2.in", onComplete: () => {
+                    nav.classList.add('hidden');
+                    nav.classList.remove('flex');
+                    gsap.set(nav, { clearProps: "all" });
+                }});
+                gsap.to(svgIcon, { rotation: 0, duration: 0.3, ease: "power2.inOut" });
+                setTimeout(() => icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'), 150);
+            }
         });
     });
 }
